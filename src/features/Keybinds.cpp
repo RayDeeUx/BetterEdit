@@ -101,6 +101,13 @@ struct $modify(EditorUI) {
                 saveConfirmation("save this level", "Save", 1);
             }
         });
+        this->defineKeybind("save-play-editor"_spr, [this] {
+            if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
+                attemptToSaveLevel(2);
+            } else {
+                saveConfirmation("save this level and playtest it", "Save", 2);
+            }
+        });
         this->defineKeybind("save-exit-editor"_spr, [this] {
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
                 attemptToSaveLevel(3);
@@ -175,17 +182,17 @@ $execute {
         Category::EDITOR
         ));
     BindManager::get()->registerBindable({
-        "save-exit-editor"_spr,
-        "Save and Exit Editor Level",
-        "Saves and exits the level you're currently editing",
-        { Keybind::create(KEY_S, Modifier::Shift | Modifier::Control) },
-        Category::EDITOR
-    });
-    BindManager::get()->registerBindable({
         "save-play-editor"_spr,
         "Save and Play Editor Level",
         "Saves and playtests the level you're currently editing",
         { Keybind::create(KEY_S, Modifier::Shift | Modifier::Control | Modifier::Alt) },
+        Category::EDITOR
+    });
+    BindManager::get()->registerBindable({
+        "save-exit-editor"_spr,
+        "Save and Exit Editor Level",
+        "Saves and exits the level you're currently editing",
+        { Keybind::create(KEY_S, Modifier::Shift | Modifier::Control) },
         Category::EDITOR
     });
     BindManager::get()->registerBindable(BindableAction(
