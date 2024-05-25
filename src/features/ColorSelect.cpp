@@ -6,7 +6,7 @@ using namespace geode::prelude;
 class $modify(GJSpecialColorSelect) {
 	bool init(int p0, GJSpecialColorSelectDelegate* p1, ColorSelectType p2){
 
-		if(((int) p2) == 1){
+		if (((int) p2) == 1){
 			p2 = (ColorSelectType)0;
 		}
 

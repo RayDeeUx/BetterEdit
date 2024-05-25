@@ -27,7 +27,7 @@ struct $modify(EditorUI) {
             this->transformObjectCall(EditCommand::RotateSnap);
         });
         this->defineKeybind("show-scale"_spr, [this]() {
-            if(auto scaleBtn = m_editButtonBar->m_buttonArray->objectAtIndex(m_editButtonBar->m_buttonArray->count() - 3)) {
+            if (auto scaleBtn = m_editButtonBar->m_buttonArray->objectAtIndex(m_editButtonBar->m_buttonArray->count() - 3)) {
                 this->activateScaleControl(scaleBtn);
             }
         });
@@ -94,6 +94,20 @@ struct $modify(EditorUI) {
         this->defineKeybind("move-obj-big-down"_spr, [this] {
             this->moveObjectCall(EditCommand::BigDown);
         });
+        this->defineKeybind("save-editor-level"_spr, [this] {
+            if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
+                attemptToSaveLevel(1);
+            } else {
+                saveConfirmation("save this level", "Save", 1);
+            }
+        });
+        this->defineKeybind("save-exit-editor"_spr, [this] {
+            if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
+                attemptToSaveLevel(3);
+            } else {
+                saveConfirmation("save this level and exit the editor", "Save and Exit", 3);
+            }
+        });
         
         return true;
     }
@@ -106,9 +120,74 @@ struct $modify(EditorUI) {
             return ListenerResult::Propagate;
         }, id);
     }
+
+    void saveConfirmation(std::string saveTypeForPopup, std::string saveTypeForButton, int mode) {
+        createQuickPopup(
+            "BetterEdit Level Saving",
+            fmt::format("Are you sure you want to <cl>{}</c>?", saveTypeForPopup),
+            "Cancel", fmt::format("{}", saveTypeForButton).c_str(),
+            [](auto, bool save) {
+                if (save) {
+                    attemptToSaveLevel(mode);
+                }
+            }
+        );
+    }
+
+    void attemptToSaveLevel(int mode) {
+        if (!(0 < mode && mode < 4)) { return; }
+        if (auto editorPauseLayer = EditorPauseLayer::create(this->m_editorLayer)) {
+            switch (mode) {
+                default:
+                    break;
+                case 1:
+                    editorPauseLayer->saveLevel();
+
+                    FLAlertLayer::create(
+                        "BetterEdit Level Saving",
+                        "Your <cl>level</c> has been saved.",
+                        "OK"
+                    )->show();
+                    break;
+                case 2:
+                    editorPauseLayer->onSaveAndPlay(nullptr); // may not work
+                    break;
+                case 3:
+                    editorPauseLayer->onSaveAndExit(nullptr);
+                    break;
+            }
+        } else {
+            FLAlertLayer::create(
+                "BetterEdit Level Saving Failed!",
+                "Your <cl>level</c> <cr>could not </c> be saved. Please try again.",
+                "OK"
+            )->show();
+        }
+    }
 };
 
 $execute {
+    BindManager::get()->registerBindable(BindableAction(
+        "save-editor-level"_spr,
+        "Save Current Editor Level",
+        "Save the level you're currently editing",
+        { Keybind::create(KEY_S, Modifier::Control) },
+        Category::EDITOR
+        ));
+    BindManager::get()->registerBindable({
+        "save-exit-editor"_spr,
+        "Save and Exit Editor Level",
+        "Saves and exits the level you're currently editing",
+        { Keybind::create(KEY_S, Modifier::Shift | Modifier::Control) },
+        Category::EDITOR
+    });
+    BindManager::get()->registerBindable({
+        "save-play-editor"_spr,
+        "Save and Play Editor Level",
+        "Saves and playtests the level you're currently editing",
+        { Keybind::create(KEY_S, Modifier::Shift | Modifier::Control | Modifier::Alt) },
+        Category::EDITOR
+    });
     BindManager::get()->registerBindable(BindableAction(
         "rotate-45-ccw"_spr,
         "Rotate 45 CCW",
