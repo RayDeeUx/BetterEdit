@@ -139,7 +139,7 @@ struct $modify(BEEditorUI, EditorUI) {
             "BetterEdit Level Saving",
             fmt::format("Are you sure you want to <cl>{}</c>?", saveTypeForPopup),
             "Cancel", fmt::format("{}", saveTypeForButton).c_str(),
-            [](auto, bool save) {
+            [this](FLAlertLayer* alert, bool save) {
                 if (save) {
                     BEEditorUI::attemptToSaveLevel(m_fields->saveMode);
                 }
