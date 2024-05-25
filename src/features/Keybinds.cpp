@@ -12,6 +12,9 @@ using namespace geode::prelude;
 using namespace keybinds;
 
 struct $modify(BEEditorUI, EditorUI) {
+    struct Fields {
+        int saveMode = -1;
+    };
     $override
     bool init(LevelEditorLayer* lel) {
         if (!EditorUI::init(lel))
@@ -95,24 +98,27 @@ struct $modify(BEEditorUI, EditorUI) {
             this->moveObjectCall(EditCommand::BigDown);
         });
         this->defineKeybind("save-editor-level"_spr, [this] {
+            m_fields->saveMode = 1;
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
-                BEEditorUI::attemptToSaveLevel(1);
+                BEEditorUI::attemptToSaveLevel(m_fields->saveMode);
             } else {
-                BEEditorUI::saveConfirmation("save this level", "Save", 1);
+                BEEditorUI::saveConfirmation("save this level", "Save");
             }
         });
         this->defineKeybind("save-play-editor"_spr, [this] {
+            m_fields->saveMode = 2;
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
-                BEEditorUI::attemptToSaveLevel(2);
+                BEEditorUI::attemptToSaveLevel(m_fields->saveMode);
             } else {
-                BEEditorUI::saveConfirmation("save this level and playtest it", "Save", 2);
+                BEEditorUI::saveConfirmation("save this level and playtest it", "Save");
             }
         });
         this->defineKeybind("save-exit-editor"_spr, [this] {
+            m_fields->saveMode = 3;
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
-                BEEditorUI::attemptToSaveLevel(3);
+                BEEditorUI::attemptToSaveLevel(m_fields->saveMode);
             } else {
-                BEEditorUI::saveConfirmation("save this level and exit the editor", "Save and Exit", 3);
+                BEEditorUI::saveConfirmation("save this level and exit the editor", "Save and Exit");
             }
         });
         
@@ -128,14 +134,14 @@ struct $modify(BEEditorUI, EditorUI) {
         }, id);
     }
 
-    void saveConfirmation(std::string saveTypeForPopup, std::string saveTypeForButton, int mode) {
+    void saveConfirmation(std::string saveTypeForPopup, std::string saveTypeForButton) {
         createQuickPopup(
             "BetterEdit Level Saving",
             fmt::format("Are you sure you want to <cl>{}</c>?", saveTypeForPopup),
             "Cancel", fmt::format("{}", saveTypeForButton).c_str(),
-            [this](FLAlertLayer* alert, bool save) {
+            [](auto, bool save) {
                 if (save) {
-                    BEEditorUI::attemptToSaveLevel(mode);
+                    BEEditorUI::attemptToSaveLevel(m_fields->saveMode);
                 }
             }
         );
