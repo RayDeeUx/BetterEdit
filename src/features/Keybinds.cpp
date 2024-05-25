@@ -11,7 +11,7 @@
 using namespace geode::prelude;
 using namespace keybinds;
 
-struct $modify(EditorUI) {
+struct $modify(BEEditorUI, EditorUI) {
     $override
     bool init(LevelEditorLayer* lel) {
         if (!EditorUI::init(lel))
@@ -96,23 +96,23 @@ struct $modify(EditorUI) {
         });
         this->defineKeybind("save-editor-level"_spr, [this] {
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
-                attemptToSaveLevel(1);
+                BEEditorUI::attemptToSaveLevel(1);
             } else {
-                saveConfirmation("save this level", "Save", 1);
+                BEEditorUI::saveConfirmation("save this level", "Save", 1);
             }
         });
         this->defineKeybind("save-play-editor"_spr, [this] {
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
-                attemptToSaveLevel(2);
+                BEEditorUI::attemptToSaveLevel(2);
             } else {
-                saveConfirmation("save this level and playtest it", "Save", 2);
+                BEEditorUI::saveConfirmation("save this level and playtest it", "Save", 2);
             }
         });
         this->defineKeybind("save-exit-editor"_spr, [this] {
             if (Mod::get()->template getSettingValue<bool>("no-save-confirmation")) {
-                attemptToSaveLevel(3);
+                BEEditorUI::attemptToSaveLevel(3);
             } else {
-                saveConfirmation("save this level and exit the editor", "Save and Exit", 3);
+                BEEditorUI::saveConfirmation("save this level and exit the editor", "Save and Exit", 3);
             }
         });
         
@@ -135,7 +135,7 @@ struct $modify(EditorUI) {
             "Cancel", fmt::format("{}", saveTypeForButton).c_str(),
             [](FLAlertLayer* alert, bool save) {
                 if (save) {
-                    attemptToSaveLevel(mode);
+                    BEEditorUI::attemptToSaveLevel(mode);
                 }
             }
         );
