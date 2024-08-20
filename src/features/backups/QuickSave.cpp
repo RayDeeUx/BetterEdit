@@ -6,7 +6,6 @@
  // FLAlertLayer class apparently being incomplete
  EditorPauseLayer::onExitNoSave() // free button callback
 */
-/*
 #include "QuickSave.hpp"
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <Geode/modify/GManager.hpp>
@@ -100,7 +99,7 @@ class $modify(EditorPauseLayer) {
     $override
     void onExitNoSave(CCObject* sender) {
         if (isViewOnlyEditor(m_editorLayer)) {
-            return EditorPauseLayer::onExitNoSave(sender);
+            return EditorPauseLayer::onSaveAndExit(sender); // TODO: FIND ADDRESS FOR THIS TO ENSURE CORRECT BEHAVIOR
         }
 
         auto fl = FLAlertLayer::create(
@@ -157,4 +156,3 @@ class $modify(MenuLayer) {
         }
     }
 };
-*/

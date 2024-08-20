@@ -107,7 +107,7 @@ class $modify(AboutBEPauseLayer, EditorPauseLayer) {
                 CCDelayTime::create(.1f),
                 CCTintTo::create(.15f, 0, 155, 255),
                 CCTintTo::create(.15f, 255, 255, 255),
-                CCEaseElasticIn::create(CCScaleTo::create(.75f, .92f), 2.f),
+                CCEaseOut::create(CCScaleTo::create(.75f, .92f), 2.f), // formerly CCEaseElasticIn
                 CCCallFunc::create(this, callfunc_selector(AboutBEPauseLayer::markButtonAsHighlighted)),
                 nullptr
             ));
@@ -129,7 +129,7 @@ class $modify(AboutBEPauseLayer, EditorPauseLayer) {
         }
         overlay->runAction(CCSequence::create(
             CCFadeTo::create(.25f, 0),
-            CCRemoveSelf::create(),
+            removeSelf,
             nullptr
         ));
     }
@@ -139,5 +139,10 @@ class $modify(AboutBEPauseLayer, EditorPauseLayer) {
     }
     void onAbout(CCObject*) {
         AboutBEPopup::create()->show();
+    }
+    void removeSelf(CCObject*) {
+        if (auto button = this->getChildByID("be-highlight-overlay"_spr)) {
+            button->removeMeAndCleanup();
+        }
     }
 };

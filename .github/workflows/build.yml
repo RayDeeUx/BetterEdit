@@ -34,6 +34,8 @@ jobs:
         with:
           bindings: geode-sdk/bindings
           bindings-ref: main
+          build-config: RelWithDebInfo # [vscode] comment this out (and the line below!) to Release mode
+          export-pdb: true # [vscode] comment this out (and the line above!) to Release mode
           combine: true
           target: ${{ matrix.config.target }}
   
