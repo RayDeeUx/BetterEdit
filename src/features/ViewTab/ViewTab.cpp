@@ -2,7 +2,6 @@
 as of aug 20 2024 US eastern daylight time,
  the following problems and/or missing bindings prevent this file
  from being ported to macos:
- EditButtonBar::reloadItems()
  LevelEditorLayer::updatePreviewParticles()
  // GJGroundLayer apparently being incomplete
  EditorUI::selectObject()
@@ -151,10 +150,12 @@ struct $modify(ViewTabUI, EditorUI) {
 
     void updateViewTab() {
         if (auto bbar = static_cast<EditButtonBar*>(this->getChildByID("view-tab"_spr))) {
-            bbar->reloadItems(
-                GameManager::get()->getIntGameVariable("0049"),
-                GameManager::get()->getIntGameVariable("0050")
-            ); //cannot be ported to macos
+            if (auto butt = bbar->m_buttonArray) {
+                auto row = GameManager::get()->getIntGameVariable("0049");
+                auto col = GameManager::get()->getIntGameVariable("0050");
+                bbar->loadFromItems(butt, row, col, false);
+                // recreated inline from geode bindings
+            }
             for (auto toggle : CCArrayExt<CCMenuItemToggler*>(bbar->m_buttonArray)) {
                 auto func = static_cast<CCFunction<bool()>*>(toggle->getUserObject("getter"));
                 toggle->toggle(func->invoke());

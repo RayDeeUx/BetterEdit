@@ -2,8 +2,13 @@
  as of aug 20 2024 US eastern daylight time,
  the following problems and/or missing bindings prevent this file
  from being ported to macos:
- EditButtonBar::reloadItems()
  EditorUI::getSpriteButton()
+*/
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following change(s) w(as/ere) made to allow this file
+ to be ported to macos:
+ EditButtonBar::reloadItems() inline recreation from geode bindings
 */
 /*
 #include <Geode/modify/EditButtonBar.hpp>
@@ -353,10 +358,12 @@ class $modify(EditorUI) {
         this->addMoveButton("move-left-unit-button"_spr,  "edit_leftBtn_001.png",  EditCommandExt::UnitLeft);
         this->addMoveButton("move-right-unit-button"_spr, "edit_rightBtn_001.png", EditCommandExt::UnitRight);
 
-        m_editButtonBar->reloadItems(
-            GameManager::get()->getIntGameVariable("0049"),
-            GameManager::get()->getIntGameVariable("0050")
-        );
+        if (auto butt = m_editButtonBar->m_buttonArray) {
+            auto row = GameManager::get()->getIntGameVariable("0049");
+            auto col = GameManager::get()->getIntGameVariable("0050");
+            m_editButtonBar->loadFromItems(butt, row, col, false);
+            // recreated inline from geode bindings
+        }
 
         // Create the custom edit menu
         (void)CustomEditMenu::get(this, true);
