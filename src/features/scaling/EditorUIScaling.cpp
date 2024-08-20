@@ -6,7 +6,6 @@
 */
 #include <Geode/cocos/sprite_nodes/CCSprite.h>
 #include <Geode/binding/EditButtonBar.hpp>
-#include <Geode/binding/EditorUI.hpp>
 #include <Geode/binding/Slider.hpp>
 #include <Geode/binding/GameManager.hpp>
 #include <Geode/utils/cocos.hpp>
