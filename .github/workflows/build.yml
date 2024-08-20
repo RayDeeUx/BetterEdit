@@ -32,8 +32,8 @@ jobs:
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
         with:
-          bindings: geode-sdk/bindings
-          bindings-ref: main
+          bindings: RayDeeUx/bindings
+          bindings-ref: worseedit
           build-config: RelWithDebInfo # [vscode] comment this out (and the line below!) to Release mode
           export-pdb: true # [vscode] comment this out (and the line above!) to Release mode
           combine: true

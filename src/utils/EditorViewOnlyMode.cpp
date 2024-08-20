@@ -2,11 +2,8 @@
  as of aug 20 2024 US eastern daylight time,
  the following problems and/or missing bindings prevent this file
  from being ported to macos:
- EditorUI->m_editButtonBar
- EditorUI->m_createButtonBar
  EditorUI::clickOnPosition()
- EditorPauseLayer::onExitEditor() // free button callback
- EditorPauseLayer::onExitNoSave() // free button callback
+ EditorPauseLayer::onExitEditor() // macos inlined
 */
 /*
  as of aug 20 2024 US eastern daylight time,
@@ -19,8 +16,8 @@
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <Geode/modify/GameManager.hpp>
-#include <Geode/bindings/EditButtonBar.hpp>
-#include <Geode/bindings/CCMenuItemSpriteExtra.hpp>
+#include <Geode/binding/EditButtonBar.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/utils/cocos.hpp>
 
 using namespace geode::prelude;

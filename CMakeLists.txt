@@ -21,7 +21,7 @@ file(GLOB SOURCES
 	src/features/scaling/*.cpp
 	src/features/ZoomLevelText/*.cpp
 	src/features/about/*.cpp
-	src/features/backups/*.cpp
+	#src/features/backups/*.cpp
 	src/features/ViewTab/*.cpp
 	src/editor/*.cpp
 	src/utils/*.cpp

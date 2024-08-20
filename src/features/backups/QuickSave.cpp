@@ -6,6 +6,7 @@
  // FLAlertLayer class apparently being incomplete
  EditorPauseLayer::onExitNoSave() // free button callback
 */
+/*
 #include "QuickSave.hpp"
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <Geode/modify/GManager.hpp>
@@ -96,8 +97,7 @@ class $modify(EditorPauseLayer) {
         EditorPauseLayer::FLAlert_Clicked(fl, btn2);
     }
 
-    // TODO: BRIBE NIN TO FIND ARM64 ADDRESS
-    /*
+    // hiimjustin addresses: m1 0x232ed4, imac 0x28f810
     $override
     void onExitNoSave(CCObject* sender) {
         if (isViewOnlyEditor(m_editorLayer)) {
@@ -115,7 +115,6 @@ class $modify(EditorPauseLayer) {
         fl->setTag(1);
         fl->show();
     }
-    */
 };
 class $modify(MenuLayer) {
     bool init() {
@@ -159,3 +158,4 @@ class $modify(MenuLayer) {
         }
     }
 };
+*/
