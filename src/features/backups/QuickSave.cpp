@@ -96,10 +96,12 @@ class $modify(EditorPauseLayer) {
         EditorPauseLayer::FLAlert_Clicked(fl, btn2);
     }
 
+    // TODO: BRIBE NIN TO FIND ARM64 ADDRESS
+    /*
     $override
     void onExitNoSave(CCObject* sender) {
         if (isViewOnlyEditor(m_editorLayer)) {
-            return EditorPauseLayer::onSaveAndExit(sender); // TODO: FIND ADDRESS FOR THIS TO ENSURE CORRECT BEHAVIOR
+            return EditorPauseLayer::onExitNoSave(sender);
         }
 
         auto fl = FLAlertLayer::create(
@@ -113,6 +115,7 @@ class $modify(EditorPauseLayer) {
         fl->setTag(1);
         fl->show();
     }
+    */
 };
 class $modify(MenuLayer) {
     bool init() {
