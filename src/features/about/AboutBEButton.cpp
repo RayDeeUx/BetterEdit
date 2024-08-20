@@ -129,7 +129,7 @@ class $modify(AboutBEPauseLayer, EditorPauseLayer) {
         }
         overlay->runAction(CCSequence::create(
             CCFadeTo::create(.25f, 0),
-            removeSelf,
+            CCCallFunc::create(this, callfunc_selector(AboutBEPauseLayer::removeSelf)),
             nullptr
         ));
     }
