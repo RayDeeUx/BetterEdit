@@ -1,8 +1,14 @@
-
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EffectGameObject->m_centerGroupID
+ EffectGameObject->m_targetGroupID
+ SetGroupIDLayer::updateGroupIDLabel()
+*/
+/*
 #include <Geode/modify/SetGroupIDLayer.hpp>
 #include <utils/NextFreeOffsetInput.hpp>
-#include <utils/Warn.hpp>
-#include <Geode/binding/GameObject.hpp>
 #include <Geode/binding/EffectGameObject.hpp>
 
 using namespace geode::prelude;
@@ -55,3 +61,4 @@ class $modify(SetGroupIDLayer) {
         // SetGroupIDLayer::onNextGroupID1(sender);
     }
 };
+*/

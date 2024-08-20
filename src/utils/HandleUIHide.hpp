@@ -1,5 +1,10 @@
 #pragma once
-
+/*
+ fod im not sure what you were trying to cook here
+ but defaultinclude may or may not be borked on macos
+ --raydeeux
+*/
+/*
 #include <Geode/DefaultInclude.hpp>
 
 using namespace geode::prelude;
@@ -23,3 +28,4 @@ public:
     ListenerResult handle(MiniFunction<Callback> fn, UIShowEvent* ev);
 };
 using OnUIHide = EventListener<UIShowFilter>;
+*/

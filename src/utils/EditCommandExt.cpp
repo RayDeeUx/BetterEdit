@@ -1,3 +1,10 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EditorUI::moveForCommand()
+*/
+/*
 #include "EditCommandExt.hpp"
 #include <Geode/modify/EditorUI.hpp>
 #include <utils/Warn.hpp>
@@ -29,3 +36,4 @@ class $modify(EditorUI) {
     BE_ALLOW_END
 };
 
+*/

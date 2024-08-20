@@ -1,3 +1,11 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ LevelEditorLayer::addSpecial()
+ LevelEditorLayer::removeSpecial()
+*/
+/*
 #include <Geode/utils/cocos.hpp>
 #include <Geode/modify/DrawGridLayer.hpp>
 #include <Geode/modify/LevelEditorLayer.hpp>
@@ -97,3 +105,4 @@ class $modify(LevelEditorLayer) {
         static_cast<DashOrbLineLayer*>(m_drawGridLayer)->unregisterDashOrb(obj);
     }
 };
+*/

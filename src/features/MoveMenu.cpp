@@ -1,3 +1,11 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EditButtonBar::reloadItems()
+ EditorUI::getSpriteButton()
+*/
+/*
 #include <Geode/modify/EditButtonBar.hpp>
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
@@ -390,3 +398,4 @@ class $modify(EditButtonBar) {
         }
     }
 };
+*/

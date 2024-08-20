@@ -4,14 +4,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
-project(BetterEdit VERSION 1.0.0)
+project(WorseEdit VERSION 1.0.0)
 
-if (NOT DONT_INCLUDE_PRO AND EXISTS ${CMAKE_CURRENT_LIST_DIR}/pro/)
-	message(STATUS "Including Pro features")
-	set(BE_PRO_FOUND TRUE)
-else()
-	message(STATUS "Including only free features, no Pro")
-endif()
+set(DONT_INCLUDE_PRO TRUE)
+set(BE_PRO_FOUND FALSE)
+
+#if (NOT DONT_INCLUDE_PRO AND EXISTS ${CMAKE_CURRENT_LIST_DIR}/pro/)
+#	message(STATUS "Including Pro features")
+#	set(BE_PRO_FOUND TRUE)
+#else()
+#	message(STATUS "Including only free features, no Pro")
+#endif()
 
 file(GLOB SOURCES
 	src/features/*.cpp

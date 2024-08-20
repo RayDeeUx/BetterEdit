@@ -1,3 +1,10 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ ObjectToolbox::gridNodeSizeForKey()
+*/
+/*
 #include "GridScaling.hpp"
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/ObjectToolbox.hpp>
@@ -156,3 +163,4 @@ void incrementGridSize(EditorUI* ui) {
 }
 
 #endif
+*/

@@ -1,14 +1,25 @@
+/*
+as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EditButtonBar::reloadItems()
+ LevelEditorLayer::updatePreviewParticles()
+ // GJGroundLayer apparently being incomplete
+ EditorUI::selectObject()
+ EditorUI::selectObjects()
+ DrawGridLayer->m_editorLayer
+*/
+/*
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <Geode/modify/GameObject.hpp>
 #include <Geode/modify/DrawGridLayer.hpp>
-#include <Geode/modify/FMODAudioEngine.hpp>
-
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/binding/EditButtonBar.hpp>
 #include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GJGroundLayer.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <geode.custom-keybinds/include/Keybinds.hpp>
 #include <utils/HandleUIHide.hpp>
@@ -65,7 +76,7 @@ struct $modify(ViewTabUI, EditorUI) {
     }
 
     void updateModeSprite(CCNode* node, int tag, const char* spr) {
-        // resetUI resets the button sprites so we may have to change them back 
+        // resetUI resets the button sprites so we may have to change them back
         // to squarish ones again
         if (node) {
             auto bg = m_selectedMode == tag ? "GJ_button_02.png" : "GJ_button_01.png";
@@ -143,7 +154,7 @@ struct $modify(ViewTabUI, EditorUI) {
             bbar->reloadItems(
                 GameManager::get()->getIntGameVariable("0049"),
                 GameManager::get()->getIntGameVariable("0050")
-            );
+            ); //cannot be ported to macos
             for (auto toggle : CCArrayExt<CCMenuItemToggler*>(bbar->m_buttonArray)) {
                 auto func = static_cast<CCFunction<bool()>*>(toggle->getUserObject("getter"));
                 toggle->toggle(func->invoke());
@@ -155,13 +166,13 @@ struct $modify(ViewTabUI, EditorUI) {
     bool init(LevelEditorLayer* lel) {
         if (!EditorUI::init(lel))
             return false;
-        
+
         if (!Mod::get()->template getSettingValue<bool>("view-menu")) {
             return true;
         }
-        
+
         auto winSize = CCDirector::get()->getWinSize();
-        
+
         // Make a bit space for new style menu since the old one is a tiny bit cramped
         if (auto left = getChildOfType<CCSprite>(this, 1), right = getChildOfType<CCSprite>(this, 2); left && right) {
             left->setPositionX(winSize.width - right->getPositionX());
@@ -204,8 +215,8 @@ struct $modify(ViewTabUI, EditorUI) {
         // Create buttons
         auto btns = CCArray::create();
 
-        // For some reason using a class that inherits from CCMenuItemToggler 
-        // for the view toggles was causing super weird crashes, so will have 
+        // For some reason using a class that inherits from CCMenuItemToggler
+        // for the view toggles was causing super weird crashes, so will have
         // to make due with this :/
 
         btns->addObject(this->createViewToggle(
@@ -257,7 +268,7 @@ struct $modify(ViewTabUI, EditorUI) {
             GameManager::get()->getIntGameVariable("0050")
         );
         buttonBar->setID("view-tab"_spr);
-        // Need to set a tag too so GD doesn't accidentally grab this tab 
+        // Need to set a tag too so GD doesn't accidentally grab this tab
         // when doing getChildByTag for its tabs
         buttonBar->setTag(-1);
         buttonBar->setVisible(m_selectedMode == 4);
@@ -280,7 +291,7 @@ struct $modify(ViewTabUI, EditorUI) {
         if (auto viewBtnBar = this->getChildByID("view-tab"_spr)) {
             // this->resetUI();
             this->updateModeSprites();
-            
+
             viewBtnBar->setVisible(m_selectedMode == 4);
         }
     }
@@ -338,3 +349,4 @@ $execute {
     ), "robtop.geometry-dash/delete-mode");
 }
 #endif
+*/

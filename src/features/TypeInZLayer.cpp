@@ -1,10 +1,18 @@
-
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EditorUI::onLockLayer() // free button callback
+ // "Cannot substitute type template argument GameObject *
+ // for constrained type template parameter Type
+ // because of violated constraint CocosObjectPtr<GameObject *>"
+*/
+/*
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/CCTextInputNode.hpp>
 #include <utils/EditableBMLabelProxy.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
-#include <Geode/binding/GameManager.hpp>
 #include <utils/HandleUIHide.hpp>
 #include <utils/Pro.hpp>
 
@@ -137,3 +145,4 @@ class $modify(TypeInUI, EditorUI) {
         this->updateLockBtn();
     }
 };
+*/

@@ -1,6 +1,6 @@
-# <c-11f917>B</c><c-12f534>e</c><c-13f348>t</c><c-14f155>t</c><c-14ef67>e</c><c-15ed76>r</c>Edit
+# <c-11f917>W</c><c-12f534>o</c><c-13f348>r</c><c-14f155>s</c><c-14ef67>e</c>Edit
 
-The ultimate editor improvement mod. Adds a ton of <cp>utilities</c> and <cj>improvements</c> to the level editor, such as <cd>redesigned menus</c>, <cp>bug fixes</c>, <ca>keybinds</c>, and more!
+A minimal macOS port of the ultimate editor improvement mod, licensed under LGPLv3 and approved by HJFod. Adds a ton of <cp>utilities</c> and <cj>improvements</c> to the level editor, although not as much as the original BetterEdit mod.
 
 ## <cg>Features</c>
 
@@ -22,6 +22,6 @@ Pre-2.206 versions of BetterEdit relied on the now-defunct BetterSave mod to cre
 
 ## <cy>Support</c>
 
-BetterEdit is first and foremost **a passion project**, however it is also being developed by a poor student living on his own. If you would like to support development and help me out, I have a <cp>Ko-fi</c>!
+WorseEdit is first and foremost **a passion project** to port BetterEdit to macOS, however it is also being developed by a poor student. Please donate to HJFod's <cp>Ko-fi</c>!
 
 [Link to my Ko-fi](https://ko-fi.com/hjfod)

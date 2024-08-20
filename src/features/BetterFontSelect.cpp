@@ -1,11 +1,15 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ LevelEditorLayer::updateLevelFont(s)
+*/
+/*
 #include <Geode/ui/Scrollbar.hpp>
 #include <Geode/ui/ScrollLayer.hpp>
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/modify/SelectFontLayer.hpp>
-#include <Geode/ui/ScrollLayer.hpp>
-#include <Geode/ui/Scrollbar.hpp>
-#include <Geode/utils/cocos.hpp>
 
 using namespace geode::prelude;
 
@@ -22,7 +26,7 @@ class $modify(BetterSelectFontLayer, SelectFontLayer) {
 
         for (size_t i = 0; i < SelFont::buttons.size(); i++) {
             if (i != static_cast<size_t>(s)) {
-                SelFont::buttons[i]->toggle(false);    
+                SelFont::buttons[i]->toggle(false);
                 SelFont::buttons[i]->setEnabled(true);
             }
             else {
@@ -134,3 +138,4 @@ class $modify(BetterSelectFontLayer, SelectFontLayer) {
         return true;
     }
 };
+*/

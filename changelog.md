@@ -1,4 +1,4 @@
-# BetterEdit 6
+# WorseEdit 6
 
 ## v6.8.0-alpha.4
  * Fix a bug with servers causing supporter popups to not work

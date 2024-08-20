@@ -1,10 +1,14 @@
-
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following change(s) w(as/ere) made to allow this file
+ to be ported to macos:
+ // named second parameter of EditorUI::scrollWheel() "x"
+*/
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/loader/Mod.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <numbers>
-#include <Geode/utils/cocos.hpp>
 
 #undef min
 #undef max
@@ -15,7 +19,7 @@ using namespace geode::prelude;
 
 class $modify(EditorUI) {
     $override
-    virtual void scrollWheel(float y, float) {
+    virtual void scrollWheel(float y, float x) {
         // Disable scrolling during playtest
         if (m_editorLayer->m_playbackMode == PlaybackMode::Playing) {
             return;

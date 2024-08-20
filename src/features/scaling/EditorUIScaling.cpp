@@ -1,3 +1,10 @@
+/*
+as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EditButtonBar::reloadItems()
+*/
+/*
 #include <Geode/Geode.hpp>
 #include <Geode/cocos/sprite_nodes/CCSprite.h>
 #include <Geode/binding/EditButtonBar.hpp>
@@ -5,7 +12,6 @@
 #include <Geode/binding/Slider.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/modify/EditorUI.hpp>
-#include <Geode/modify/EditButtonBar.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <utils/Pro.hpp>
 
@@ -191,3 +197,4 @@ class $modify(EditorPauseLayer) {
         static_cast<ScaledUI*>(EditorUI::get())->centerBuildTabs();
     }
 };
+*/

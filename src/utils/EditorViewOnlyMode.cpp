@@ -1,7 +1,29 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ EditorUI->m_editButtonBar
+ EditorUI->m_createButtonBar
+ EditorUI::clickOnPosition()
+ EditorPauseLayer::onExitEditor() // free button callback
+ EditorPauseLayer::onExitNoSave() // free button callback
+*/
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following change(s) w(as/ere) made to allow this file
+ to be ported to macos:
+ // added new include directive: //#include <Geode/utils/cocos.hpp>//
+*/
+/*
 #include "EditorViewOnlyMode.hpp"
 #include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <Geode/modify/GameManager.hpp>
+#include <Geode/bindings/EditButtonBar.hpp>
+#include <Geode/bindings/CCMenuItemSpriteExtra.hpp>
+#include <Geode/utils/cocos.hpp>
+
+using namespace geode::prelude;
 
 static Ref<CCLayer> SCENE_TO_RETURN_TO = nullptr;
 class $modify(GameManager) {
@@ -128,3 +150,4 @@ class $modify(EditorPauseLayer) {
         }
     }
 };
+*/

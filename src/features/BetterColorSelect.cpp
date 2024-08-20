@@ -1,3 +1,19 @@
+/*
+as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ CustomizeObjectLayer::onSelectColor()
+ CustomizeObjectLayer::getActiveMode()
+ CustomizeObjectLayer::highlightSelected()
+ CustomizeObjectLayer::updateCustomColorLabels()
+ CustomizeObjectLayer::onUpdateCustomColor() // free button callback
+ CustomizeObjectLayer::updateSelected()
+ CustomizeObjectLayer::updateColorSprite()
+ CustomizeObjectLayer::updateChannelLabel()
+ CustomizeObjectLayer::onClose() // free button callback
+ GJSpecialColorSelect::textForColorIdx()
+*/
+/*
 #include <Geode/GeneratedPredeclare.hpp>
 #include <Geode/Geode.hpp>
 #include <Geode/cocos/cocoa/CCObject.h>
@@ -8,7 +24,6 @@
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/binding/LevelSettingsObject.hpp>
 #include <Geode/binding/GJEffectManager.hpp>
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/ColorAction.hpp>
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/binding/CCTextInputNode.hpp>
@@ -52,8 +67,8 @@ std::string longTextForColorIdx(int channel) {
 
 static std::array<int, 15> RECENT_COLOR_IDS {};
 static constexpr std::array SPECIAL_CHANNEL_ORDER_SMALL {
-    0,    1005, 1006, 
-    1000, 1001, 1013, 
+    0,    1005, 1006,
+    1000, 1001, 1013,
     1007, 1009, 1014,
     1004, 1002, 1003,
     1012, 1010, 1011,
@@ -67,7 +82,7 @@ static constexpr std::array SPECIAL_CHANNEL_ORDER_LARGE {
 
 class $modify(NewColorSelect, CustomizeObjectLayer) {
     struct Fields {
-        // This makes sure that the first call to goToPage always actually 
+        // This makes sure that the first call to goToPage always actually
         // generates the page content
         int page = 0;
         bool modified = false;
@@ -106,7 +121,7 @@ class $modify(NewColorSelect, CustomizeObjectLayer) {
         auto action = LevelEditorLayer::get()->m_levelSettings->m_effectManager->getColorAction(channel);
 
         sprite->updateValues(action);
-        
+
         switch (channel) {
             case 1010: {
                 sprite->setColor({ 0, 0, 0 });
@@ -198,17 +213,17 @@ class $modify(NewColorSelect, CustomizeObjectLayer) {
         if (!Mod::get()->template getSettingValue<bool>("new-color-menu")) {
             return CustomizeObjectLayer::onSelectColor(sender);
         }
-        
-        // gotoPage removes the children in the channel menu, which causes the 
-        // sender to be freed - this ensures it stays in memory for the 
+
+        // gotoPage removes the children in the channel menu, which causes the
+        // sender to be freed - this ensures it stays in memory for the
         // duration of the call
 
-        // funny note: this actually still results in a read from undefined 
-        // memory! This is because Cocos2d is a terribly designed framework and 
-        // every single `CCMenuItem::activate` call always results in at least 
-        // one read from then-freed memory if the selector frees the menu item 
+        // funny note: this actually still results in a read from undefined
+        // memory! This is because Cocos2d is a terribly designed framework and
+        // every single `CCMenuItem::activate` call always results in at least
+        // one read from then-freed memory if the selector frees the menu item
         // itself
-        
+
         auto ref = Ref(sender);
         auto channel = sender->getTag();
         CustomizeObjectLayer::onSelectColor(sender);
@@ -428,7 +443,7 @@ class $modify(NewColorSelect, CustomizeObjectLayer) {
     bool init(GameObject* obj, CCArray* objs) {
         if (!CustomizeObjectLayer::init(obj, objs))
             return false;
-        
+
         if (!Mod::get()->template getSettingValue<bool>("new-color-menu")) {
             return true;
         }
@@ -436,7 +451,7 @@ class $modify(NewColorSelect, CustomizeObjectLayer) {
         auto winSize = CCDirector::get()->getWinSize();
         auto largeBtns = Mod::get()->template getSettingValue<bool>("larger-color-menu");
 
-        // move the browse and copy paste menus to be inline with the popup because 
+        // move the browse and copy paste menus to be inline with the popup because
         // i will actually get diarrhea if they stay the way they are in vanilla
         if (auto menu = m_mainLayer->getChildByID("browse-menu")) {
             menu->setPositionY(winSize.height / 2 - 50.f);
@@ -464,12 +479,12 @@ class $modify(NewColorSelect, CustomizeObjectLayer) {
         m_mainLayer->getChildByID("channel-input-bg")->setPosition(selectPos);
         m_mainLayer->getChildByID("channel-input")->setPosition(selectPos);
         m_customColorInput->m_maxLabelWidth = 38.f;
-        
+
         // // remove the bg from custom color select
         // m_colorTabNodes->removeObject(m_customColorInputBG);
         // m_customColorInputBG->removeFromParent();
 
-        // keeping both m_customColorInputBG and m_customColorButtonSprite 
+        // keeping both m_customColorInputBG and m_customColorButtonSprite
         // in memory so there are no faultful accesses due to GD code
 
         // add bg. it's the special HJfod sauce that makes UI look good
@@ -639,3 +654,4 @@ class $modify(NewColorSelect, CustomizeObjectLayer) {
         return true;
     }
 };
+*/

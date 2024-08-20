@@ -1,5 +1,22 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ // LevelEditorLayer class apparently being incomplete
+ // GameManager class apparently being incomplete
+ // CCMenuItemSpriteExtra class apparently being incomplete
+ // no matching constructor for initialization of 'UIShowEvent'
+ // no member named 'post' in 'UIShowEvent'
+ // out-of-line definition of 'UIShowEvent' does not match any declaration in 'UIShowEvent'
+ // out-of-line definition of 'UIShowFilter' does not match any declaration in 'UIShowFilter'
+ // out-of-line definition of 'handle' does not match any declaration in 'UIShowFilter'
+*/
+/*
 #include "HandleUIHide.hpp"
 #include <Geode/modify/EditorUI.hpp>
+#include <Geode/binding/LevelEditorLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 
 class $modify(HideUI, EditorUI) {
     $override
@@ -33,3 +50,4 @@ ListenerResult UIShowFilter::handle(MiniFunction<Callback> fn, UIShowEvent* ev) 
     }
     return ListenerResult::Propagate;
 }
+*/

@@ -1,3 +1,13 @@
+/*
+ as of aug 20 2024 US eastern daylight time,
+ the following problems and/or missing bindings prevent this file
+ from being ported to macos:
+ CreateParticlePopup::init()
+ CreateParticlePopup::onClose() // free button callback
+ ParticleGameObject::setParticleString()
+ CreateParticlePopup::create()
+*/
+/*
 #include <Geode/modify/CreateParticlePopup.hpp>
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
@@ -72,3 +82,4 @@ class $modify(CopyParticleStringPopup, CreateParticlePopup) {
         }
     }
 };
+*/
