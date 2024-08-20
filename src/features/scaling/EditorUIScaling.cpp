@@ -5,7 +5,8 @@
  EditButtonBar::reloadItems() inline recreation from geode bindings
 */
 #include <Geode/cocos/sprite_nodes/CCSprite.h>
-#include <Geode/binding/Slider.hpp>#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/Slider.hpp>
+#include <Geode/binding/GameManager.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <Geode/modify/EditorUI.hpp>
