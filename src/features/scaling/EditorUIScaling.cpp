@@ -11,6 +11,7 @@
 #include <Geode/binding/GameManager.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
+#include <Geode/modify/EditorUI.hpp>
 #include <utils/Pro.hpp>
 
 using namespace geode::prelude;
