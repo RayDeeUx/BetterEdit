@@ -1,17 +1,15 @@
 /*
-as of aug 20 2024 US eastern daylight time,
- the following problems and/or missing bindings prevent this file
- from being ported to macos:
- EditButtonBar::reloadItems()
+ as of aug 20 2024 US eastern daylight time,
+ the following change(s) w(as/ere) made to allow this file
+ to be ported to macos:
+ EditButtonBar::reloadItems() inline recreation from geode bindings
 */
-/*
-#include <Geode/Geode.hpp>
 #include <Geode/cocos/sprite_nodes/CCSprite.h>
 #include <Geode/binding/EditButtonBar.hpp>
 #include <Geode/binding/EditorUI.hpp>
 #include <Geode/binding/Slider.hpp>
+#include <Geode/binding/GameManager.hpp>
 #include <Geode/utils/cocos.hpp>
-#include <Geode/modify/EditorUI.hpp>
 #include <Geode/modify/EditorPauseLayer.hpp>
 #include <utils/Pro.hpp>
 
@@ -148,12 +146,14 @@ class $modify(ScaledUI, EditorUI) {
         // This is so silly. If you don't do this, the menu is wrongly positioned, 
         // but only the first time. I have no clue what's going on
         this->centerBuildTabs();
-        for (auto c : CCArrayExt<CCNode*>(this->getChildren())) {
-            if (auto bar = typeinfo_cast<EditButtonBar*>(c)) {
-                bar->reloadItems(
-                    GameManager::get()->getIntGameVariable("0049"),
-                    GameManager::get()->getIntGameVariable("0050")
-                );
+        for (auto child : CCArrayExt<CCNode*>(this->getChildren())) {
+            if (auto bar = typeinfo_cast<EditButtonBar*>(child)) {
+                if (auto butt = m_editButtonBar->m_buttonArray) {
+                    auto row = GameManager::get()->getIntGameVariable("0049");
+                    auto col = GameManager::get()->getIntGameVariable("0050");
+                    m_editButtonBar->loadFromItems(butt, row, col, false);
+                    // recreated inline from geode bindings
+                }
             }
         }
         this->centerBuildTabs();
@@ -199,4 +199,3 @@ class $modify(EditorPauseLayer) {
         static_cast<ScaledUI*>(EditorUI::get())->centerBuildTabs();
     }
 };
-*/
