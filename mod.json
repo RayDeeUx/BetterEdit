@@ -33,11 +33,6 @@
 			"id": "hjfod.trashcan",
 			"version": "1.0.0",
 			"importance": "required"
-		},
-		{
-			"id": "hjfod.backups",
-			"version": "1.0.0",
-			"importance": "recommended"
 		}
     ],
 	"incompatibilities": [
