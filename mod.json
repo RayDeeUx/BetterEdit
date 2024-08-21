@@ -40,6 +40,13 @@
 			"importance": "recommended"
 		}
     ],
+	"incompatibilities": [
+		{
+			"id": "hjfod.betteredit",
+			"version": "*",
+			"importance": "breaking"
+		}
+	],
 	"resources": {
 		"spritesheets": {
 			"UISheet": [
@@ -54,12 +61,34 @@
 		}
 	},
 	"settings": {
+		"auto-save-rate": {
+			"type": "string",
+			"default": "Every 10 Minutes",
+			"name": "Auto-save",
+			"one-of": ["Every 10 Minutes", "Every 20 Minutes", "Every Hour", "Never"],
+			"description": "Automatically saves the level in the editor at the specified rate, as well as creates a backup. The backups created by autosave get automatically deleted after 3 new ones have been created to avoid using too much disk space.",
+			"platforms": ["win", "android32", "android64"]
+		},
+		"quick-save": {
+			"type": "bool",
+			"default": true,
+			"name": "Quick Save",
+			"description": "Makes level saving faster by saving to a backup file rather than directly to the save file.",
+			"platforms": ["win", "android32", "android64"]
+		},
 		"mouse-move-on-zoom": {
 			"type": "bool",
 			"default": true,
 			"name": "Zoom Towards Cursor",
 			"description": "When enabled and while holding down the CTRL key, zooming in the editor with the scroll wheel will be zoomed toward the cursor and not the center of the screen",
 			"platforms": ["win", "macos"]
+		},
+		"pinch-to-zoom": {
+			"type": "bool",
+			"default": true,
+			"name": "Pinch to Zoom",
+			"description": "When enabled, use two fingers to zoom in/out.",
+			"platforms": ["android32", "android64"]
 		},
 		"show-zoom-text": {
 			"type": "bool",
@@ -75,9 +104,9 @@
 			"name": "Scale Factor",
 			"description": "The factor the UI should be scaled by.\n<cr>Requires re-entering the editor!</c>",
 			"control": {
-                "slider": true,
+				"slider": true,
 				"slider-step": 0.025
-            }
+			}
 		},
 		"scale-pause": {
 			"type": "bool",
@@ -89,13 +118,72 @@
 			"type": "bool",
 			"default": true,
 			"name": "Scale Build Tabs",
-			"description": "Whether the tabs above the object selection area should be scaled according to the scale factor aswell"
+			"description": "Whether the tabs above the object selection area should be scaled according to the scale factor as well."
+		},
+		"better-font-select": {
+			"type": "bool",
+			"default": true,
+			"name": "New Font Selection Menu",
+			"description": "Replaces the old font select screen with a better one with scrolling.",
+			"platforms": ["win", "android32", "android64"]
+		},
+		"new-edit-menu": {
+			"type": "bool",
+			"default": true,
+			"name": "New Edit Menu",
+			"description": "Changes the object moving menu to have the move button grouped directionally rather than in a list.\n<cr>Requires re-entering the editor!</c>",
+			"platforms": ["win", "android32", "android64"]
+		},
+		"view-menu": {
+			"type": "bool",
+			"default": true,
+			"name": "Show View Tab",
+			"description": "Adds a new fourth tab to the editor with buttons from quickly toggling on/off the visibility of features.",
+			"platforms": ["win", "android32", "android64"]
+		},
+		"new-color-menu": {
+			"type": "bool",
+			"default": true,
+			"name": "New Color Menu",
+			"description": "Changes the object color selection menu to show more channels as well as previews for colors and special colors.",
+			"platforms": ["win", "android32", "android64"]
+		},
+		"larger-color-menu": {
+			"type": "bool",
+			"default": {
+				"win": false,
+				"mac": false,
+				"android": true
+			},
+			"name": "Larger Color Menu",
+			"description": "If you're using the <cr>New Color Menu</c>, this makes the color channel buttons a bit larger.",
+			"platforms": ["win", "android32", "android64"]
+		},
+		"grid-size-controls": {
+			"type": "bool",
+			"default": true,
+			"name": "Show Grid Size Controls",
+			"description": "Shows controls in the UI for adjusting the size of the grid. <cr>Requires re-entering the editor!</c>",
+			"platforms": ["win", "android64"]
+		},
+		"show-grid-on-size-change": {
+			"type": "bool",
+			"default": true,
+			"name": "Show Grid on Size Change",
+			"description": "If the grid is currently hidden and you use the controls to change its size, its toggled on",
+			"platforms": ["win", "android64"]
 		},
 		"dev-mode": {
 			"type": "bool",
 			"default": false,
 			"name": "Developer Mode",
-			"description": "Enables some features intended for developers.\n<cr>This currently doesn't do anything for now.</c>"
+			"description": "Enables some features intended for Developers"
+		},
+		"better-select": {
+			"type": "bool",
+			"default": false,
+			"name": "Better Warp Selection (WIP + Supporter-Only)",
+			"platforms": ["win", "android32", "android64"]
 		}
 	},
 	"tags": ["editor", "enhancement", "utility", "customization"]
