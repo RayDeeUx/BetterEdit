@@ -2,6 +2,7 @@
 #include <Geode/binding/CCMenuItemToggler.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/ui/BasedButtonSprite.hpp>
+#include <Geode/utils/cocos.hpp>
 #include <utils/HandleUIHide.hpp>
 
 using namespace geode::prelude;
@@ -33,6 +34,30 @@ class $modify(HideButtonUI, EditorUI) {
             m_fields->hideToggle->m_notClickable = true;
             menu->addChild(m_fields->hideToggle);
             menu->updateLayout();
+
+            // attempted
+            /*
+            auto tmpToggle = CCMenuItemToggler::create(
+                hideSpr, unhideSpr, this, menu_selector(HideButtonUI::onHide)
+            );
+            tmpToggle->setID("hide-ui-toggle-temp"_spr);
+            tmpToggle->m_notClickable = true;
+            menu->addChild(tmpToggle);
+            menu->updateLayout();
+            auto newPosition = tmpToggle->convertToWorldSpace(tmpToggle->getPosition());
+            tmpToggle->removeMeAndCleanup();
+            auto newMenu = CCMenu::create();
+            m_fields->hideToggle = CCMenuItemToggler::create(
+                hideSpr, unhideSpr, lel, menu_selector(HideButtonUI::onHide)
+            );
+            m_fields->hideToggle->setID("hide-ui-toggle"_spr);
+            m_fields->hideToggle->setPosition(newPosition);
+            newMenu->addChild(m_fields->hideToggle);
+            newMenu->setPosition(0, 0);
+            newMenu->updateLayout();
+            lel->addChild(newMenu, 1);
+            lel->updateLayout();
+            */
         }
 
         return true;
@@ -41,13 +66,13 @@ class $modify(HideButtonUI, EditorUI) {
     $override
     void showUI(bool show) {
         EditorUI::showUI(show);
-        if (m_fields->hideToggle) {
-            m_fields->hideToggle->toggle(!show);
-            m_fields->hideToggle->setVisible(m_editorLayer->m_playbackMode != PlaybackMode::Playing);
-        }
     }
 
     void onHide(CCObject*) {
-        EditorUI::showUI(m_fields->hideToggle->isToggled());
+        EditorUI::setVisible(m_fields->hideToggle->isToggled());
+        if (m_fields->hideToggle) {
+            m_fields->hideToggle->toggle(!EditorUI::isVisible());
+            m_fields->hideToggle->setVisible(m_editorLayer->m_playbackMode != PlaybackMode::Playing);
+        }
     }
 };
