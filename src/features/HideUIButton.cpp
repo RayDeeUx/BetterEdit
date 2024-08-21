@@ -48,6 +48,6 @@ class $modify(HideButtonUI, EditorUI) {
     }
 
     void onHide(CCObject*) {
-        this->showUI(m_fields->hideToggle->isToggled());
+        EditorUI::showUI(m_fields->hideToggle->isToggled());
     }
 };
